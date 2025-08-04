@@ -1,0 +1,12 @@
+streamlit
+python-dotenv
+google-generativeai
+streamlit-lottie
+plotly
+matplotlib
+numpy
+pandas
+
+
+# cd "C:\Users\NEEL\OneDrive\Desktop\Python\IBM\IBM_Project"
+# streamlit run AI_Health_Risk_Predictor.py
