@@ -9,8 +9,6 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
-
-
 # ---------------- Load API Key ----------------
 load_dotenv("API.env")
 api_key = os.getenv("GEMINI_API_KEY")
@@ -56,10 +54,11 @@ def calculate_risks(age, gender, systolic, diastolic, sugar, bmi, cholesterol, h
 
     return risks
 
-# ---------------- Gemini Advice ----------------
+# ---------------- Gemini AI Advice ----------------
 def get_gemini_advice(user_data, risk_results):
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        # ✅ Fixed model name here
+        model = genai.GenerativeModel("models/gemini-1.5-flash-latest")
         prompt = f"""
         You are a futuristic AI medical assistant robot.
         User Health Data: {user_data}
@@ -98,8 +97,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-
-
+# Greeting Section
 st.markdown("""
 <style>
 .greeting-text {
@@ -134,10 +132,8 @@ bmi = st.number_input("BMI", min_value=10.0, max_value=50.0, format="%.1f")
 cholesterol = st.number_input("Cholesterol (mg/dL)", min_value=100, max_value=400)
 heart_rate = st.number_input("Heart Rate (bpm)", min_value=40, max_value=200)
 
-# ---------------- Predict ----------------
-# ---------------- Predict ----------------
+# ---------------- Predict Button ----------------
 if st.button("🔍 Predict Risk"):
-    # Collect user data
     user_data = {
         "Age": age,
         "Gender": gender,
@@ -149,21 +145,19 @@ if st.button("🔍 Predict Risk"):
         "Heart Rate": heart_rate
     }
 
-    # Calculate risks
     risk_results = calculate_risks(age, gender, systolic, diastolic, sugar, bmi, cholesterol, heart_rate)
 
-    # Robot Advice
+    # Robot Advice Section
     st.subheader("🤖 Robot's Health Advice")
     advice = get_gemini_advice(user_data, risk_results)
     st.write(advice)
 
-    # Animations Row
+    # Animations
     col1, col2, col3 = st.columns([1, 1, 1])
     with col1:
         st_lottie(robot_anim, height=200, key="robot")
     with col2:
-        st.markdown(
-            """
+        st.markdown("""
             <div style='text-align:center; padding: 20px;
                  background: linear-gradient(135deg, #1e9600, #fff200, #ff0000);
                  color: white; font-size: 32px; font-weight: bold;
@@ -172,17 +166,14 @@ if st.button("🔍 Predict Risk"):
                  letter-spacing: 1px;'>
                 🎉 YOU ARE SECURE 🎉
             </div>
-            """,
-            unsafe_allow_html=True
-        )
+        """, unsafe_allow_html=True)
     with col3:
         st_lottie(heart_anim, height=200, key="heart")
 
-    # 🎉 Celebration Animation if all risks are Low
     if all(r == "Low" for r in risk_results.values()):
         st_lottie(celebrate_anim, height=200, key="celebration_top")
 
-    # Show Risk Cards
+    # Risk Cards
     st.subheader("📊 Risk Prediction")
     colors_map = {"Low": "green", "Moderate": "orange", "High": "red"}
     for disease, risk in risk_results.items():
@@ -192,7 +183,7 @@ if st.button("🔍 Predict Risk"):
         )
 
     # ---------------- 3D Chart ----------------
-    st.subheader("📊  Health Risk Chart")
+    st.subheader("📊 Health Risk Chart")
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111, projection='3d')
 
