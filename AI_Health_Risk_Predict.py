@@ -209,3 +209,4 @@ if st.button("🔍 Predict Risk"):
     ax.set_title("Health Risk Levels", fontsize=16, fontweight="bold", color="purple")
 
     st.pyplot(fig)
+
