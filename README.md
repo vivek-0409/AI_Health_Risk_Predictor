@@ -5,3 +5,4 @@ The system provides:
 •	Personalized Recommendations – Suggests preventive measures such as diet improvements, exercise routines, or medical check-ups.
 •	Data Visualization – Displays health trends and risk scores in an easy-to-understand dashboard.
 •	Early Detection – Helps users identify risks before symptoms become severe.
+
