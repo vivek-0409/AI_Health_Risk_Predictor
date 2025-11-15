@@ -55,10 +55,14 @@ def calculate_risks(age, gender, systolic, diastolic, sugar, bmi, cholesterol, h
     return risks
 
 # ---------------- Gemini AI Advice ----------------
+# ---------------- Gemini Advice ----------------
+
+
 def get_gemini_advice(user_data, risk_results):
     try:
-        # ✅ Correct model name
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        # Change the model name from the deprecated 'gemini-1.5-flash-latest' 
+        # to the latest stable model for best results.
+        model = genai.GenerativeModel("gemini-2.5-flash") 
 
         prompt = f"""
         You are a futuristic AI medical assistant robot.
@@ -212,4 +216,5 @@ if st.button("🔍 Predict Risk"):
     ax.set_title("Health Risk Levels", fontsize=16, fontweight="bold", color="purple")
 
     st.pyplot(fig)
+
 
