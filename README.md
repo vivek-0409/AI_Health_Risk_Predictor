@@ -5,6 +5,8 @@ Machine Learning Based Health Risk Prediction System
 AI Health Risk Predictor is an intelligent system that analyzes user health data and predicts potential health risks using Machine Learning.
 The goal of this project is to demonstrate how AI can assist in early risk identification and health awareness.
 
+Live Demo:- https://aihealthriskpredictor-edtbs52xunudyv2thszjep.streamlit.app/
+
 🔗 GitHub Repository
 👉 https://github.com/vivek-0409/AI_Health_Risk_Predictor/
 
